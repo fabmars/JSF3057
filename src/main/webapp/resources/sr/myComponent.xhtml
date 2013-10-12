@@ -1,0 +1,47 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:sr="http://java.sun.com/jsf/composite/sr">
+            
+	<composite:interface>
+		<composite:attribute name="form" type="whatever.MyForm" required="true"/>
+		<composite:attribute name="listener1" method-signature="void action()"/>
+		<composite:attribute name="listener2" method-signature="void action(javax.faces.event.AjaxBehaviorEvent)"/>
+		<composite:attribute name="listener3" method-signature="void action(javax.faces.event.AjaxBehaviorEvent)"/>
+	</composite:interface>
+	
+	<composite:implementation>
+		<h:panelGrid columns="2">
+			<h:outputLabel value="Value 1" />
+			<h:selectOneMenu value="#{cc.attrs.form.value1}">
+				<f:selectItem itemValue=""/>
+				<f:selectItem itemValue="One"/>
+				<f:selectItem itemValue="Two"/>
+				<f:selectItem itemValue="Three"/>
+				<f:ajax event="change" listener="#{cc.attrs.listener1}"/>
+				<f:ajax event="keyup" listener="#{cc.attrs.listener1}"/>
+			</h:selectOneMenu>
+
+			<h:outputLabel value="Value 2" />
+			<h:selectOneMenu value="#{cc.attrs.form.value2}">
+				<f:selectItem itemValue=""/>
+				<f:selectItem itemValue="Four"/>
+				<f:selectItem itemValue="Five"/>
+				<f:selectItem itemValue="Six"/>
+				<f:ajax event="change" listener="#{cc.attrs.listener2}"/>
+				<f:ajax event="keyup" listener="#{cc.attrs.listener2}"/>
+			</h:selectOneMenu>
+
+			<h:outputLabel value="Value 3" />
+			<h:selectOneMenu value="#{cc.attrs.form.value3}">
+				<f:selectItem itemValue=""/>
+				<f:selectItem itemValue="Seven"/>
+				<f:selectItem itemValue="Eight"/>
+				<f:selectItem itemValue="Nine"/>
+				<f:ajax event="change" listener="#{cc.attrs.listener3}"/>
+				<f:ajax event="keyup" listener="#{cc.attrs.listener3}"/>
+			</h:selectOneMenu>
+		</h:panelGrid>
+	</composite:implementation>
+</html>
